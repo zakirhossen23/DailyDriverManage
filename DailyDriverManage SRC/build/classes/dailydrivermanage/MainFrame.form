@@ -375,12 +375,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="loadBTN" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="cancel2" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="cancel3" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="cancel" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="cancel1" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="cancel4" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="loadBTN" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="cancel2" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="cancel3" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="cancel" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="cancel4" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="cancel1" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -393,9 +398,9 @@
                       <Component id="cancel3" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="cancel" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="210" pref="210" max="-2" attributes="0"/>
+                      <EmptySpace pref="204" max="32767" attributes="0"/>
                       <Component id="cancel1" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="cancel4" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -551,7 +556,6 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="columnSelectionAllowed" type="boolean" value="false"/>
                     <Property name="doubleBuffered" type="boolean" value="true"/>
                     <Property name="rowHeight" type="int" value="25"/>
                     <Property name="showGrid" type="boolean" value="true"/>
