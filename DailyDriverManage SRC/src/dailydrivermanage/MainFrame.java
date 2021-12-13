@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
@@ -519,7 +521,23 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AmountTXTKeyTyped
 
     private void ExportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBTNActionPerformed
-        // TODO add your handling code here:
+// parent component of the dialog
+        JFrame parentFrame = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a csv file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+           if (Functionalities.exportToCSV(MainTable,fileToSave.getAbsolutePath()) == true){
+           JOptionPane.showMessageDialog(null, "Saved to " +fileToSave.getAbsolutePath() );
+
+           
+           }
+        }
+
     }//GEN-LAST:event_ExportBTNActionPerformed
 
     private void loadBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBTNActionPerformed

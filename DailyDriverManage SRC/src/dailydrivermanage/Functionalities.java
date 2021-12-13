@@ -5,7 +5,11 @@
  */
 package dailydrivermanage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -88,6 +92,37 @@ public class Functionalities {
         expectedday.setText("£"+ TotalDayTakingCount/5);
     }
     
-    
+    public static boolean exportToCSV(JTable tableToExport,String pathToExportTo) {
+
+    try {
+
+        TableModel model = tableToExport.getModel(); // Get the model of that Table
+        FileWriter csv = new FileWriter(new File(pathToExportTo)); //Creating a file to that saving path
+
+        for (int i = 0; i < model.getColumnCount(); i++) { //Writing all the Columns
+            csv.write(model.getColumnName(i) + ",");
+        }
+
+        csv.write("\n");
+
+        for (int i = 0; i < model.getRowCount(); i++) { //Writing all the rows of that Table
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                try{  
+                    String value = model.getValueAt(i, j).toString();
+                    csv.write( value+ ",");
+                }catch(Exception e){             //If any Cell is empty then skip       
+                }
+              
+            }
+            csv.write("\n");
+        }
+
+        csv.close();
+        return true;
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
 
 }
