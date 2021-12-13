@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -54,37 +55,37 @@ public class MainFrame extends javax.swing.JFrame {
         Date date = new Date(); //creating a new date variable
         SpinnerDateModel sm =  new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY); //setting hour of day
         jSpinner1 = new javax.swing.JSpinner(sm);
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        PickupTXT = new javax.swing.JTextField();
+        DestinationTXT = new javax.swing.JTextField();
+        DriversIDTXT = new javax.swing.JTextField();
+        PassengerTXT = new javax.swing.JTextField();
+        AmountTXT = new javax.swing.JTextField();
+        OptionalTipTXT = new javax.swing.JTextField();
+        AccountTXT = new javax.swing.JTextField();
+        TelephoneTXT = new javax.swing.JTextField();
         panel1 = new java.awt.Panel();
-        cancel = new javax.swing.JButton();
+        CancelBTN = new javax.swing.JButton();
         loadBTN = new javax.swing.JButton();
-        cancel2 = new javax.swing.JButton();
-        cancel3 = new javax.swing.JButton();
-        cancel1 = new javax.swing.JButton();
-        cancel4 = new javax.swing.JButton();
+        InsertBTN = new javax.swing.JButton();
+        SaveBTN = new javax.swing.JButton();
+        ReportBTN = new javax.swing.JButton();
+        ExportBTN = new javax.swing.JButton();
         panel2 = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        MainTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        totalamountTXT = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        TotalJobsTXT = new javax.swing.JLabel();
+        TotalExpectedText = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        SecondTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,135 +173,70 @@ public class MainFrame extends javax.swing.JFrame {
         jSpinner1.setPreferredSize(null);
         InputFieldsPanel.add(jSpinner1);
 
-        jTextField1.setMinimumSize(null);
-        jTextField1.setPreferredSize(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField1);
+        PickupTXT.setMinimumSize(null);
+        PickupTXT.setPreferredSize(null);
+        InputFieldsPanel.add(PickupTXT);
 
-        jTextField2.setMinimumSize(null);
-        jTextField2.setPreferredSize(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField2);
+        DestinationTXT.setMinimumSize(null);
+        DestinationTXT.setPreferredSize(null);
+        InputFieldsPanel.add(DestinationTXT);
 
-        jTextField3.setMinimumSize(null);
-        jTextField3.setPreferredSize(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField3);
+        DriversIDTXT.setMinimumSize(null);
+        DriversIDTXT.setPreferredSize(null);
+        InputFieldsPanel.add(DriversIDTXT);
 
-        jTextField4.setMinimumSize(null);
-        jTextField4.setPreferredSize(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField4);
+        PassengerTXT.setMinimumSize(null);
+        PassengerTXT.setPreferredSize(null);
+        InputFieldsPanel.add(PassengerTXT);
 
-        jTextField5.setMinimumSize(null);
-        jTextField5.setPreferredSize(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField5);
+        AmountTXT.setMinimumSize(null);
+        AmountTXT.setPreferredSize(null);
+        InputFieldsPanel.add(AmountTXT);
 
-        jTextField6.setMinimumSize(null);
-        jTextField6.setPreferredSize(null);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField6);
+        OptionalTipTXT.setMinimumSize(null);
+        OptionalTipTXT.setPreferredSize(null);
+        InputFieldsPanel.add(OptionalTipTXT);
 
-        jTextField7.setMaximumSize(null);
-        jTextField7.setMinimumSize(null);
-        jTextField7.setPreferredSize(null);
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField7);
+        AccountTXT.setMaximumSize(null);
+        AccountTXT.setMinimumSize(null);
+        AccountTXT.setPreferredSize(null);
+        InputFieldsPanel.add(AccountTXT);
 
-        jTextField8.setMinimumSize(new java.awt.Dimension(0, 24));
-        jTextField8.setPreferredSize(new java.awt.Dimension(101, 28));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
-            }
-        });
-        InputFieldsPanel.add(jTextField8);
+        TelephoneTXT.setMinimumSize(new java.awt.Dimension(0, 24));
+        TelephoneTXT.setPreferredSize(new java.awt.Dimension(101, 28));
+        InputFieldsPanel.add(TelephoneTXT);
 
         panel1.setBackground(new java.awt.Color(102, 255, 255));
 
-        cancel.setText("Cancel");
-        cancel.setToolTipText("Unselect/Reset");
-        cancel.setFocusable(false);
-        cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
-            }
-        });
+        CancelBTN.setText("Cancel");
+        CancelBTN.setToolTipText("Unselect/Reset");
+        CancelBTN.setFocusable(false);
 
         loadBTN.setText("Load");
         loadBTN.setFocusable(false);
-        loadBTN.addActionListener(new java.awt.event.ActionListener() {
+
+        InsertBTN.setText("Insert");
+        InsertBTN.setToolTipText("Insert Data");
+        InsertBTN.setAlignmentY(0.0F);
+        InsertBTN.setFocusable(false);
+        InsertBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadBTNActionPerformed(evt);
+                InsertBTNActionPerformed(evt);
             }
         });
 
-        cancel2.setText("Insert");
-        cancel2.setToolTipText("Insert Data");
-        cancel2.setAlignmentY(0.0F);
-        cancel2.setFocusable(false);
-        cancel2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel2ActionPerformed(evt);
-            }
-        });
+        SaveBTN.setText("Save");
+        SaveBTN.setToolTipText("Save/Update");
+        SaveBTN.setAlignmentY(0.0F);
+        SaveBTN.setFocusable(false);
 
-        cancel3.setText("Save");
-        cancel3.setToolTipText("Save/Update");
-        cancel3.setAlignmentY(0.0F);
-        cancel3.setFocusable(false);
-        cancel3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel3ActionPerformed(evt);
-            }
-        });
+        ReportBTN.setText("Report");
+        ReportBTN.setToolTipText("Report");
+        ReportBTN.setFocusable(false);
 
-        cancel1.setText("Report");
-        cancel1.setToolTipText("Report");
-        cancel1.setFocusable(false);
-        cancel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel1ActionPerformed(evt);
-            }
-        });
-
-        cancel4.setText("Export");
-        cancel4.setToolTipText("Export");
-        cancel4.setFocusable(false);
-        cancel4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel4ActionPerformed(evt);
-            }
-        });
+        ExportBTN.setText("Export");
+        ExportBTN.setToolTipText("Export");
+        ExportBTN.setFocusable(false);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -309,11 +245,11 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InsertBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         panel1Layout.setVerticalGroup(
@@ -321,20 +257,20 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addComponent(loadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(cancel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InsertBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(cancel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SaveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ReportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        MainTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Time", "Pick Up Point", "Destination", "Driver's ID", "Passenger Name", "Amount", "Optional Tip", "Account", "Telephone"
@@ -348,28 +284,28 @@ public class MainFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12)); //Changing Header Font
-        jTable1.getTableHeader().setOpaque(false);
-        jTable1.getTableHeader().setBackground(new Color(68, 253, 159));
-        jTable1.getTableHeader().setForeground(new Color(0, 0, 0));
-        jTable1.setDoubleBuffered(true);
-        jTable1.setRowHeight(25);
-        jTable1.setShowGrid(true);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        MainTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12)); //Changing Header Font
+        MainTable.getTableHeader().setOpaque(false);
+        MainTable.getTableHeader().setBackground(new Color(68, 253, 159));
+        MainTable.getTableHeader().setForeground(new Color(0, 0, 0));
+        MainTable.setDoubleBuffered(true);
+        MainTable.setRowHeight(25);
+        MainTable.setShowGrid(true);
+        MainTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(MainTable);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("£1,026.40");
-        jLabel10.setToolTipText("");
-        jLabel10.setAlignmentX(0.5F);
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 80, 30));
+        totalamountTXT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        totalamountTXT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalamountTXT.setText("£0.00");
+        totalamountTXT.setToolTipText("");
+        totalamountTXT.setAlignmentX(0.5F);
+        totalamountTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        totalamountTXT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(totalamountTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 80, 30));
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -389,23 +325,23 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 170, 30));
 
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel14.setText("109");
-        jLabel14.setToolTipText("");
-        jLabel14.setAlignmentX(0.5F);
-        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 80, 30));
+        TotalJobsTXT.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        TotalJobsTXT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TotalJobsTXT.setText("0");
+        TotalJobsTXT.setToolTipText("");
+        TotalJobsTXT.setAlignmentX(0.5F);
+        TotalJobsTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TotalJobsTXT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(TotalJobsTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 80, 30));
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("£205.28");
-        jLabel15.setToolTipText("");
-        jLabel15.setAlignmentX(0.5F);
-        jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 80, 30));
+        TotalExpectedText.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        TotalExpectedText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TotalExpectedText.setText("£0.00");
+        TotalExpectedText.setToolTipText("");
+        TotalExpectedText.setAlignmentX(0.5F);
+        TotalExpectedText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TotalExpectedText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(TotalExpectedText, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 80, 30));
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -445,19 +381,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel21.setText("Takings");
+        jLabel21.setText("%");
         jLabel21.setToolTipText("");
         jLabel21.setAlignmentX(0.5F);
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 110, 63, 20));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        SecondTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1),  new Float(0.0),  new Double(0.0),  new Integer(0)},
-                { new Integer(2),  new Float(238.5),  new Double(47.7),  new Integer(25)},
-                { new Integer(3),  new Float(277.9),  new Double(55.58),  new Integer(19)},
-                { new Integer(4),  new Float(30.0),  new Double(6.0),  new Integer(1)}
+
             },
             new String [] {
                 "Driver", "Takings", "%", "Jobs done"
@@ -471,12 +404,12 @@ public class MainFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable2.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable2.setInheritsPopupMenu(true);
-        jTable2.getTableHeader().setResizingAllowed(false);
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jTable2.setTableHeader(null);
-        jScrollPane2.setViewportView(jTable2);
+        SecondTable.setGridColor(new java.awt.Color(0, 0, 0));
+        SecondTable.setInheritsPopupMenu(true);
+        SecondTable.getTableHeader().setResizingAllowed(false);
+        SecondTable.getTableHeader().setReorderingAllowed(false);
+        SecondTable.setTableHeader(null);
+        jScrollPane2.setViewportView(SecondTable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 250, 260));
 
@@ -536,61 +469,20 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelActionPerformed
-
-    private void loadBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loadBTNActionPerformed
-
-    private void cancel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel2ActionPerformed
-
-    private void cancel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel3ActionPerformed
-
-    private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel1ActionPerformed
-
-    private void cancel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel4ActionPerformed
+    private void InsertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBTNActionPerformed
+      DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
+      table.addRow(Functionalities.inserting( new JSpinner.DateEditor(jSpinner1, "hh:mm a").getFormat().format(jSpinner1.getValue()) 
+              , PickupTXT.getText(), DestinationTXT.getText()
+              , DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText()
+              , AccountTXT.getText(), TelephoneTXT.getText()));
+       
+      DefaultTableModel Model = (DefaultTableModel) SecondTable.getModel(); //Getting Second Table Model.
+      SecondTable.setModel(Functionalities.SecondInserting(Integer.valueOf(DriversIDTXT.getText().toString())
+              ,Float.valueOf(AmountTXT.getText()),Model));
+      
+      Functionalities.TotalCount(totalamountTXT, TotalJobsTXT,TotalExpectedText,(DefaultTableModel) SecondTable.getModel());
+      
+    }//GEN-LAST:event_InsertBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -628,20 +520,29 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AccountTXT;
+    private javax.swing.JTextField AmountTXT;
+    private javax.swing.JButton CancelBTN;
     private javax.swing.JPanel ContainerPanel;
+    private javax.swing.JTextField DestinationTXT;
+    private javax.swing.JTextField DriversIDTXT;
+    private javax.swing.JButton ExportBTN;
     private javax.swing.JPanel InputFieldsPanel;
+    private javax.swing.JButton InsertBTN;
     private javax.swing.JPanel LabelsContainerPanel;
-    private javax.swing.JButton cancel;
-    private javax.swing.JButton cancel1;
-    private javax.swing.JButton cancel2;
-    private javax.swing.JButton cancel3;
-    private javax.swing.JButton cancel4;
+    private javax.swing.JTable MainTable;
+    private javax.swing.JTextField OptionalTipTXT;
+    private javax.swing.JTextField PassengerTXT;
+    private javax.swing.JTextField PickupTXT;
+    private javax.swing.JButton ReportBTN;
+    private javax.swing.JButton SaveBTN;
+    private javax.swing.JTable SecondTable;
+    private javax.swing.JTextField TelephoneTXT;
+    private javax.swing.JLabel TotalExpectedText;
+    private javax.swing.JLabel TotalJobsTXT;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
@@ -659,18 +560,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton loadBTN;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
+    private javax.swing.JLabel totalamountTXT;
     // End of variables declaration//GEN-END:variables
 }

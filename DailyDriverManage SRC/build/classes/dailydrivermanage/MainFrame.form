@@ -256,7 +256,7 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, &quot;HH:mm:ss&quot;);&#x9;// using DateEditor to set the time format&#xa;jSpinner1.setEditor(de);&#x9;//Setting the final DateEditor to default editor."/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="PickupTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -265,11 +265,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="DestinationTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -278,11 +275,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="DriversIDTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -291,11 +285,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="PassengerTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -304,11 +295,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="AmountTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -317,11 +305,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
+            <Component class="javax.swing.JTextField" name="OptionalTipTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -330,11 +315,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
+            <Component class="javax.swing.JTextField" name="AccountTXT">
               <Properties>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
@@ -346,11 +328,8 @@
                   <Dimension value="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
+            <Component class="javax.swing.JTextField" name="TelephoneTXT">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[0, 24]"/>
@@ -359,9 +338,6 @@
                   <Dimension value="[101, 28]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -378,11 +354,11 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="loadBTN" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="cancel2" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="cancel3" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="cancel" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="cancel4" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="cancel1" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="InsertBTN" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="SaveBTN" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="CancelBTN" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="ExportBTN" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="ReportBTN" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -393,40 +369,34 @@
                   <Group type="102" attributes="0">
                       <Component id="loadBTN" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="cancel2" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="InsertBTN" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="cancel3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="SaveBTN" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="cancel" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="CancelBTN" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="cancel1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="ReportBTN" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cancel4" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="ExportBTN" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="cancel">
+            <Component class="javax.swing.JButton" name="CancelBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
                 <Property name="toolTipText" type="java.lang.String" value="Unselect/Reset"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="loadBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Load"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadBTNActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="cancel2">
+            <Component class="javax.swing.JButton" name="InsertBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Insert"/>
                 <Property name="toolTipText" type="java.lang.String" value="Insert Data"/>
@@ -434,39 +404,30 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsertBTNActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="cancel3">
+            <Component class="javax.swing.JButton" name="SaveBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save"/>
                 <Property name="toolTipText" type="java.lang.String" value="Save/Update"/>
                 <Property name="alignmentY" type="float" value="0.0"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel3ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="cancel1">
+            <Component class="javax.swing.JButton" name="ReportBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report"/>
                 <Property name="toolTipText" type="java.lang.String" value="Report"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel1ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="cancel4">
+            <Component class="javax.swing.JButton" name="ExportBTN">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Export"/>
                 <Property name="toolTipText" type="java.lang.String" value="Export"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancel4ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -497,10 +458,10 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="MainTable">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="jTable1.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, Font.BOLD, 12)); //Changing Header Font&#xa;jTable1.getTableHeader().setOpaque(false);&#xa;jTable1.getTableHeader().setBackground(new Color(68, 253, 159));&#xa;jTable1.getTableHeader().setForeground(new Color(0, 0, 0));">
-                      <Table columnCount="9" rowCount="1">
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="MainTable.getTableHeader().setFont(new Font(&quot;Segoe UI&quot;, Font.BOLD, 12)); //Changing Header Font&#xa;MainTable.getTableHeader().setOpaque(false);&#xa;MainTable.getTableHeader().setBackground(new Color(68, 253, 159));&#xa;MainTable.getTableHeader().setForeground(new Color(0, 0, 0));">
+                      <Table columnCount="9" rowCount="0">
                         <Column editable="true" title="Time" type="java.lang.Object"/>
                         <Column editable="true" title="Pick Up Point" type="java.lang.String"/>
                         <Column editable="true" title="Destination" type="java.lang.String"/>
@@ -587,13 +548,13 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="totalamountTXT">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="12" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="&#xa3;1,026.40"/>
+                    <Property name="text" type="java.lang.String" value="&#xa3;0.00"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -659,13 +620,13 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel14">
+                <Component class="javax.swing.JLabel" name="TotalJobsTXT">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="12" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="109"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -683,13 +644,13 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel15">
+                <Component class="javax.swing.JLabel" name="TotalExpectedText">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="12" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value="&#xa3;205.28"/>
+                    <Property name="text" type="java.lang.String" value="&#xa3;0.00"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -809,7 +770,7 @@
                       <Font name="Times New Roman" size="14" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="Takings"/>
+                    <Property name="text" type="java.lang.String" value="%"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -839,34 +800,14 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable2">
+                    <Component class="javax.swing.JTable" name="SecondTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Driver" type="java.lang.Integer">
-                              <Data value="1"/>
-                              <Data value="2"/>
-                              <Data value="3"/>
-                              <Data value="4"/>
-                            </Column>
-                            <Column editable="true" title="Takings" type="java.lang.Float">
-                              <Data value="0.0"/>
-                              <Data value="238.5"/>
-                              <Data value="277.9"/>
-                              <Data value="30.0"/>
-                            </Column>
-                            <Column editable="true" title="%" type="java.lang.Double">
-                              <Data value="0.0"/>
-                              <Data value="47.7"/>
-                              <Data value="55.58"/>
-                              <Data value="6.0"/>
-                            </Column>
-                            <Column editable="true" title="Jobs done" type="java.lang.Integer">
-                              <Data value="0"/>
-                              <Data value="25"/>
-                              <Data value="19"/>
-                              <Data value="1"/>
-                            </Column>
+                          <Table columnCount="4" rowCount="0">
+                            <Column editable="true" title="Driver" type="java.lang.Integer"/>
+                            <Column editable="true" title="Takings" type="java.lang.Float"/>
+                            <Column editable="true" title="%" type="java.lang.Double"/>
+                            <Column editable="true" title="Jobs done" type="java.lang.Integer"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -902,7 +843,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTable2.setTableHeader(null);"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SecondTable.setTableHeader(null);"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
