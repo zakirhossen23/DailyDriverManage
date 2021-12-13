@@ -16,8 +16,6 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-
-
 /**
  *
  * @author zakir
@@ -68,7 +66,6 @@ public class MainFrame extends javax.swing.JFrame {
         loadBTN = new javax.swing.JButton();
         InsertBTN = new javax.swing.JButton();
         SaveBTN = new javax.swing.JButton();
-        ReportBTN = new javax.swing.JButton();
         ExportBTN = new javax.swing.JButton();
         panel2 = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -183,6 +180,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         DriversIDTXT.setMinimumSize(null);
         DriversIDTXT.setPreferredSize(null);
+        DriversIDTXT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DriversIDTXTKeyTyped(evt);
+            }
+        });
         InputFieldsPanel.add(DriversIDTXT);
 
         PassengerTXT.setMinimumSize(null);
@@ -191,6 +193,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         AmountTXT.setMinimumSize(null);
         AmountTXT.setPreferredSize(null);
+        AmountTXT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AmountTXTKeyTyped(evt);
+            }
+        });
         InputFieldsPanel.add(AmountTXT);
 
         OptionalTipTXT.setMinimumSize(null);
@@ -230,13 +237,14 @@ public class MainFrame extends javax.swing.JFrame {
         SaveBTN.setAlignmentY(0.0F);
         SaveBTN.setFocusable(false);
 
-        ReportBTN.setText("Report");
-        ReportBTN.setToolTipText("Report");
-        ReportBTN.setFocusable(false);
-
         ExportBTN.setText("Export");
         ExportBTN.setToolTipText("Export");
         ExportBTN.setFocusable(false);
+        ExportBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -248,8 +256,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(InsertBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ReportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         panel1Layout.setVerticalGroup(
@@ -263,8 +270,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(CancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ReportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -470,19 +475,40 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InsertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBTNActionPerformed
-      DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
-      table.addRow(Functionalities.inserting( new JSpinner.DateEditor(jSpinner1, "hh:mm a").getFormat().format(jSpinner1.getValue()) 
-              , PickupTXT.getText(), DestinationTXT.getText()
-              , DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText()
-              , AccountTXT.getText(), TelephoneTXT.getText()));
-       
-      DefaultTableModel Model = (DefaultTableModel) SecondTable.getModel(); //Getting Second Table Model.
-      SecondTable.setModel(Functionalities.SecondInserting(Integer.valueOf(DriversIDTXT.getText().toString())
-              ,Float.valueOf(AmountTXT.getText()),Model));
-      
-      Functionalities.TotalCount(totalamountTXT, TotalJobsTXT,TotalExpectedText,(DefaultTableModel) SecondTable.getModel());
-      
+        DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
+        table.addRow(Functionalities.inserting(new JSpinner.DateEditor(jSpinner1, "hh:mm a").getFormat().format(jSpinner1.getValue()),
+                 PickupTXT.getText(), DestinationTXT.getText(),
+                 DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText(),
+                 AccountTXT.getText(), TelephoneTXT.getText()));
+
+        DefaultTableModel Model = (DefaultTableModel) SecondTable.getModel(); //Getting Second Table Model.
+        SecondTable.setModel(Functionalities.SecondInserting(Integer.valueOf(DriversIDTXT.getText().toString()),
+                 Float.valueOf(AmountTXT.getText()), Model));
+
+        Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel());
+
     }//GEN-LAST:event_InsertBTNActionPerformed
+
+    private void DriversIDTXTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DriversIDTXTKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!(Character.isDigit(c))) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_DriversIDTXTKeyTyped
+
+    private void AmountTXTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AmountTXTKeyTyped
+        char c = evt.getKeyChar();
+
+        if (!(Character.isDigit(c) || (c == '.'))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_AmountTXTKeyTyped
+
+    private void ExportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ExportBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -534,7 +560,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField OptionalTipTXT;
     private javax.swing.JTextField PassengerTXT;
     private javax.swing.JTextField PickupTXT;
-    private javax.swing.JButton ReportBTN;
     private javax.swing.JButton SaveBTN;
     private javax.swing.JTable SecondTable;
     private javax.swing.JTextField TelephoneTXT;
