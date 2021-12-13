@@ -8,9 +8,16 @@ package dailydrivermanage;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
@@ -221,6 +228,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         loadBTN.setText("Load");
         loadBTN.setFocusable(false);
+        loadBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBTNActionPerformed(evt);
+            }
+        });
 
         InsertBTN.setText("Insert");
         InsertBTN.setToolTipText("Insert Data");
@@ -282,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -477,13 +489,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void InsertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBTNActionPerformed
         DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
         table.addRow(Functionalities.inserting(new JSpinner.DateEditor(jSpinner1, "hh:mm a").getFormat().format(jSpinner1.getValue()),
-                 PickupTXT.getText(), DestinationTXT.getText(),
-                 DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText(),
-                 AccountTXT.getText(), TelephoneTXT.getText()));
+                PickupTXT.getText(), DestinationTXT.getText(),
+                DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText(),
+                AccountTXT.getText(), TelephoneTXT.getText()));
 
         DefaultTableModel Model = (DefaultTableModel) SecondTable.getModel(); //Getting Second Table Model.
         SecondTable.setModel(Functionalities.SecondInserting(Integer.valueOf(DriversIDTXT.getText().toString()),
-                 Float.valueOf(AmountTXT.getText()), Model));
+                Float.valueOf(AmountTXT.getText()), Model));
 
         Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel());
 
@@ -509,6 +521,43 @@ public class MainFrame extends javax.swing.JFrame {
     private void ExportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ExportBTNActionPerformed
+
+    private void loadBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBTNActionPerformed
+        String filepath = "";
+        // create a File chooser
+        JFileChooser fc = new JFileChooser();
+        int i = fc.showOpenDialog(this);
+        if (i == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            filepath = f.getPath(); // Get the File Path
+
+        }
+        // Parsing CSV.
+        // These are variables.
+        String file = filepath;
+        BufferedReader reader = null;
+        String line = "";
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null) {
+                String[] row = line.split(",");
+                if (!line.contains("Pick Up Point")) {
+                    DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
+                    table.addRow(row);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }//GEN-LAST:event_loadBTNActionPerformed
 
     /**
      * @param args the command line arguments

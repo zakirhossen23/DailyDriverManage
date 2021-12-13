@@ -87,5 +87,7 @@ public class Functionalities {
         totaljobdone.setText(String.valueOf(TotalJobsCount));
         expectedday.setText("£"+ TotalDayTakingCount/5);
     }
+    
+    
 
 }

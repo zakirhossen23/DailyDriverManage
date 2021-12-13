@@ -398,6 +398,9 @@
                 <Property name="text" type="java.lang.String" value="Load"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadBTNActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="InsertBTN">
               <Properties>
@@ -466,7 +469,7 @@
                         <Column editable="true" title="Destination" type="java.lang.String"/>
                         <Column editable="true" title="Driver&apos;s ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Passenger Name" type="java.lang.String"/>
-                        <Column editable="true" title="Amount" type="java.lang.Integer"/>
+                        <Column editable="true" title="Amount" type="java.lang.String"/>
                         <Column editable="true" title="Optional Tip" type="java.lang.String"/>
                         <Column editable="true" title="Account" type="java.lang.String"/>
                         <Column editable="true" title="Telephone" type="java.lang.String"/>
