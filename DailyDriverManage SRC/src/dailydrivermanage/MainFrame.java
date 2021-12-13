@@ -294,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -488,7 +488,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void InsertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBTNActionPerformed
         DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
-        table.addRow(Functionalities.inserting(new JSpinner.DateEditor(jSpinner1, "hh:mm a").getFormat().format(jSpinner1.getValue()),
+        table.addRow(Functionalities.inserting(new JSpinner.DateEditor(jSpinner1, "hh:mm").getFormat().format(jSpinner1.getValue()),
                 PickupTXT.getText(), DestinationTXT.getText(),
                 DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText(),
                 AccountTXT.getText(), TelephoneTXT.getText()));
@@ -541,9 +541,13 @@ public class MainFrame extends javax.swing.JFrame {
             reader = new BufferedReader(new FileReader(file));
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(",");
-                if (!line.contains("Pick Up Point")) {
+                if (!line.contains("Pick Up Point")) { //Checking if it is Header or not. If it is header then skip.
                     DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
-                    table.addRow(row);
+                    table.addRow(row); // Adding into main table
+                    DefaultTableModel secondtable = (DefaultTableModel) SecondTable.getModel(); //Getting Maintable Model.
+                    Functionalities.SecondInserting(Integer.valueOf(row[3]), Float.valueOf(row[5]), secondtable); //Adding into Second Table
+                    Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel()); //Using SecondTable model so we can sum.
+
                 }
 
             }
