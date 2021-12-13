@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -172,7 +173,7 @@ public class MainFrame extends javax.swing.JFrame {
         InputFieldsPanel.setAlignmentX(0.0F);
         InputFieldsPanel.setLayout(new java.awt.GridLayout(1, 0, 1, 0));
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm:ss");	// using DateEditor to set the time format
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm");	// using DateEditor to set the time format
         jSpinner1.setEditor(de);	//Setting the final DateEditor to default editor.
         jSpinner1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jSpinner1.setMinimumSize(null);
@@ -227,6 +228,11 @@ public class MainFrame extends javax.swing.JFrame {
         CancelBTN.setText("Cancel");
         CancelBTN.setToolTipText("Unselect/Reset");
         CancelBTN.setFocusable(false);
+        CancelBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTNActionPerformed(evt);
+            }
+        });
 
         loadBTN.setText("Load");
         loadBTN.setFocusable(false);
@@ -250,6 +256,11 @@ public class MainFrame extends javax.swing.JFrame {
         SaveBTN.setToolTipText("Save/Update");
         SaveBTN.setAlignmentY(0.0F);
         SaveBTN.setFocusable(false);
+        SaveBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveBTNActionPerformed(evt);
+            }
+        });
 
         ExportBTN.setText("Export");
         ExportBTN.setToolTipText("Export");
@@ -311,6 +322,11 @@ public class MainFrame extends javax.swing.JFrame {
         MainTable.setRowHeight(25);
         MainTable.setShowGrid(true);
         MainTable.getTableHeader().setReorderingAllowed(false);
+        MainTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MainTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(MainTable);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -531,11 +547,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
-           if (Functionalities.exportToCSV(MainTable,fileToSave.getAbsolutePath()) == true){
-           JOptionPane.showMessageDialog(null, "Saved to " +fileToSave.getAbsolutePath() );
+            if (Functionalities.exportToCSV(MainTable, fileToSave.getAbsolutePath()) == true) {
+                JOptionPane.showMessageDialog(null, "Saved to " + fileToSave.getAbsolutePath());
 
-           
-           }
+            }
         }
 
     }//GEN-LAST:event_ExportBTNActionPerformed
@@ -580,6 +595,88 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_loadBTNActionPerformed
+
+    private void SaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBTNActionPerformed
+        DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.       
+        //Ressing the selected Table Row.
+        table.setValueAt(new JSpinner.DateEditor(jSpinner1, "hh:mm").getFormat().format(jSpinner1.getValue()), MainTable.getSelectedRow(), 0);
+        table.setValueAt(PickupTXT.getText(), MainTable.getSelectedRow(), 1);
+        table.setValueAt(DestinationTXT.getText(), MainTable.getSelectedRow(), 2);
+        table.setValueAt(DriversIDTXT.getText(), MainTable.getSelectedRow(), 3);
+        table.setValueAt(PassengerTXT.getText(), MainTable.getSelectedRow(), 4);
+        table.setValueAt(AmountTXT.getText(), MainTable.getSelectedRow(), 5);
+        table.setValueAt(OptionalTipTXT.getText(), MainTable.getSelectedRow(), 6);
+        table.setValueAt(AccountTXT.getText(), MainTable.getSelectedRow(), 7);
+        table.setValueAt(TelephoneTXT.getText(), MainTable.getSelectedRow(), 8);
+
+
+    }//GEN-LAST:event_SaveBTNActionPerformed
+
+    private void MainTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainTableMouseClicked
+        DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
+        //Time Box
+        Date def = new Date();    //Initializing a new Date Variable
+        SimpleDateFormat formatterDefault = new SimpleDateFormat("HH:mm"); //Setting a date formatter. So we can parse from the Table Time column.
+        try {
+            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 0).toString()); //Parsing the Time.
+        } catch (Exception ex) {
+        }
+        jSpinner1.setValue(def); //Setting the Selected Time to Spinner.
+
+        //Others Box
+        //First clearing all box.
+        PickupTXT.setText("");
+        DestinationTXT.setText("");
+        DriversIDTXT.setText("");
+        PassengerTXT.setText("");
+        AmountTXT.setText("");
+        OptionalTipTXT.setText("");
+        AccountTXT.setText("");
+        TelephoneTXT.setText("");
+        //Resetting from the selected Table Row.
+        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 1).toString());
+        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
+        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
+        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
+        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
+        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
+        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
+        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+    }//GEN-LAST:event_MainTableMouseClicked
+
+    private void CancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTNActionPerformed
+        //Goes for same code. It is retrieving from the table.
+
+        DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
+        //Time Box
+        Date def = new Date();    //Initializing a new Date Variable
+        SimpleDateFormat formatterDefault = new SimpleDateFormat("HH:mm"); //Setting a date formatter. So we can parse from the Table Time column.
+        try {
+            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 0).toString()); //Parsing the Time.
+        } catch (Exception ex) {
+        }
+        jSpinner1.setValue(def); //Setting the Selected Time to Spinner.
+
+        //Others Box
+        //First clearing all box.
+        PickupTXT.setText("");
+        DestinationTXT.setText("");
+        DriversIDTXT.setText("");
+        PassengerTXT.setText("");
+        AmountTXT.setText("");
+        OptionalTipTXT.setText("");
+        AccountTXT.setText("");
+        TelephoneTXT.setText("");
+        //Resetting from the selected Table Row.
+        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 1).toString());
+        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
+        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
+        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
+        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
+        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
+        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
+        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+    }//GEN-LAST:event_CancelBTNActionPerformed
 
     /**
      * @param args the command line arguments
