@@ -5,6 +5,7 @@
  */
 package dailydrivermanage;
 
+import java.sql.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,24 +16,33 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author zakir
+ * @author StudentK
  */
 public class Functionalities {
 
-    public static Object[] inserting(String timebox, String Pickupbox,
+    public static Object[] inserting(int Serialbox, String timebox, String Pickupbox,
             String Destinationbox, String DriversIDbox, String PassengerBox,
             String Amountbox, String Optionalbox, String Accountbox,
-            String Telephonebox) {
-        Object[] row = new Object[9];
-        row[0] = timebox;
-        row[1] = Pickupbox;
-        row[2] = Destinationbox;
-        row[3] = DriversIDbox;
-        row[4] = PassengerBox;
-        row[5] = Amountbox;
-        row[6] = Optionalbox;
-        row[7] = Accountbox;
-        row[8] = Telephonebox;
+            String Telephonebox, Connection con) {
+        Object[] row = new Object[10];
+        row[0] = Serialbox;
+        row[1] = timebox;
+        row[2] = Pickupbox;
+        row[3] = Destinationbox;
+        row[4] = DriversIDbox;
+        row[5] = PassengerBox;
+        row[6] = Amountbox;
+        row[7] = Optionalbox;
+        row[8] = Accountbox;
+        row[9] = Telephonebox;
+        try {
+            String query = "INSERT INTO DAILYDRIVER (SERIAL,\"TIME\", PICKUPPOINT, DESTINATION, DRIVERID, PASSENGERNAME, AMOUNT, OPTIONALTIP, ACCOUNT, TELEPHONE)"
+                    + "VALUES (" + Serialbox + ",'" + timebox + "', '" + Pickupbox + "', '" + Destinationbox + "', " + DriversIDbox + ", '" + PassengerBox + "', " + Amountbox + ",' " + Optionalbox + "',' " + Accountbox + "', '" + Telephonebox + "')";
+            //Inserting into database
+            DBclass.insert(con, query);
+        } catch (Exception e) {
+        }
+
         return row;
     }
 
@@ -75,6 +85,13 @@ public class Functionalities {
 
     }
 
+    public static TableModel SecondInsertingModel(DefaultTableModel Model, DefaultTableModel SecondModel) {
+        for (int i = 0; i < Model.getRowCount(); i++) { //Writing all the rows of that Table
+            SecondInserting(Integer.valueOf(Model.getValueAt(i, 4).toString()), Float.valueOf(Model.getValueAt(i, 6).toString()), SecondModel);
+        }
+        return SecondModel;
+    }
+
     public static void TotalCount(JLabel totalearned, JLabel totaljobdone, JLabel expectedday, DefaultTableModel Model) {
         //Initializing all new storing variable
         float TotalDayTakingCount = 0.00f;
@@ -84,45 +101,45 @@ public class Functionalities {
         for (int i = 0; i < Model.getRowCount(); i++) {
             TotalDayTakingCount = TotalDayTakingCount + Float.valueOf(Model.getValueAt(i, 1).toString());
             TotalJobsCount = TotalJobsCount + Integer.valueOf(Model.getValueAt(i, 3).toString());
-                        
+
         }
         //Setting to all those Counted Label
-        totalearned.setText("£"+ TotalDayTakingCount );
+        totalearned.setText("£" + TotalDayTakingCount);
         totaljobdone.setText(String.valueOf(TotalJobsCount));
-        expectedday.setText("£"+ TotalDayTakingCount/5);
+        expectedday.setText("£" + TotalDayTakingCount / 5);
     }
-    
-    public static boolean exportToCSV(JTable tableToExport,String pathToExportTo) {
 
-    try {
+    public static boolean exportToCSV(JTable tableToExport, String pathToExportTo) {
 
-        TableModel model = tableToExport.getModel(); // Get the model of that Table
-        FileWriter csv = new FileWriter(new File(pathToExportTo)); //Creating a file to that saving path
+        try {
 
-        for (int i = 0; i < model.getColumnCount(); i++) { //Writing all the Columns
-            csv.write(model.getColumnName(i) + ",");
-        }
+            TableModel model = tableToExport.getModel(); // Get the model of that Table
+            FileWriter csv = new FileWriter(new File(pathToExportTo)); //Creating a file to that saving path
 
-        csv.write("\n");
-
-        for (int i = 0; i < model.getRowCount(); i++) { //Writing all the rows of that Table
-            for (int j = 0; j < model.getColumnCount(); j++) {
-                try{  
-                    String value = model.getValueAt(i, j).toString();
-                    csv.write( value+ ",");
-                }catch(Exception e){             //If any Cell is empty then skip       
-                }
-              
+            for (int i = 0; i < model.getColumnCount(); i++) { //Writing all the Columns
+                csv.write(model.getColumnName(i) + ",");
             }
-            csv.write("\n");
-        }
 
-        csv.close();
-        return true;
-    } catch (IOException e) {
-        e.printStackTrace();
+            csv.write("\n");
+
+            for (int i = 0; i < model.getRowCount(); i++) { //Writing all the rows of that Table
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    try {
+                        String value = model.getValueAt(i, j).toString();
+                        csv.write(value + ",");
+                    } catch (Exception e) {             //If any Cell is empty then skip       
+                    }
+
+                }
+                csv.write("\n");
+            }
+
+            csv.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-}
 
 }

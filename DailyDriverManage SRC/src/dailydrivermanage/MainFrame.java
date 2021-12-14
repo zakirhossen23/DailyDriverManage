@@ -25,18 +25,33 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
- * @author zakir
+ * @author StudentK
  */
 public class MainFrame extends javax.swing.JFrame {
+
+    Connection con = DBclass.connectdb();
+    int latestserial = 0;  //For inserting;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        try {
+            // For loading Main Table
+            MainTable.setModel(DBclass.loaddata(con, (DefaultTableModel) MainTable.getModel()));
+            //For loading Second Table
+            SecondTable.setModel(Functionalities.SecondInsertingModel((DefaultTableModel) MainTable.getModel(), (DefaultTableModel) SecondTable.getModel()));
+            //For Total count
+            Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel());
+            latestserial = Integer.valueOf(MainTable.getModel().getRowCount()) + 1;    //getting the latest serial after loaded from the data
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -173,7 +188,7 @@ public class MainFrame extends javax.swing.JFrame {
         InputFieldsPanel.setAlignmentX(0.0F);
         InputFieldsPanel.setLayout(new java.awt.GridLayout(1, 0, 1, 0));
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm");	// using DateEditor to set the time format
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm:ss");	// using DateEditor to set the time format
         jSpinner1.setEditor(de);	//Setting the final DateEditor to default editor.
         jSpinner1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jSpinner1.setMinimumSize(null);
@@ -303,11 +318,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Time", "Pick Up Point", "Destination", "Driver's ID", "Passenger Name", "Amount", "Optional Tip", "Account", "Telephone"
+                "Serial", "Time", "Pick Up Point", "Destination", "Driver's ID", "Passenger Name", "Amount", "Optional Tip", "Account", "Telephone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -328,6 +343,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(MainTable);
+        if (MainTable.getColumnModel().getColumnCount() > 0) {
+            MainTable.getColumnModel().getColumn(0).setMinWidth(40);
+            MainTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+            MainTable.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -506,17 +526,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void InsertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBTNActionPerformed
         DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
-        table.addRow(Functionalities.inserting(new JSpinner.DateEditor(jSpinner1, "hh:mm").getFormat().format(jSpinner1.getValue()),
+        table.addRow(Functionalities.inserting(latestserial, new JSpinner.DateEditor(jSpinner1, "HH:mm:ss").getFormat().format(jSpinner1.getValue()),
                 PickupTXT.getText(), DestinationTXT.getText(),
                 DriversIDTXT.getText(), PassengerTXT.getText(), AmountTXT.getText(), OptionalTipTXT.getText(),
-                AccountTXT.getText(), TelephoneTXT.getText()));
+                AccountTXT.getText(), TelephoneTXT.getText(), con));
 
         DefaultTableModel Model = (DefaultTableModel) SecondTable.getModel(); //Getting Second Table Model.
         SecondTable.setModel(Functionalities.SecondInserting(Integer.valueOf(DriversIDTXT.getText().toString()),
                 Float.valueOf(AmountTXT.getText()), Model));
 
         Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel());
-
+        latestserial++;
     }//GEN-LAST:event_InsertBTNActionPerformed
 
     private void DriversIDTXTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DriversIDTXTKeyTyped
@@ -580,7 +600,7 @@ public class MainFrame extends javax.swing.JFrame {
                     DefaultTableModel secondtable = (DefaultTableModel) SecondTable.getModel(); //Getting Maintable Model.
                     Functionalities.SecondInserting(Integer.valueOf(row[3]), Float.valueOf(row[5]), secondtable); //Adding into Second Table
                     Functionalities.TotalCount(totalamountTXT, TotalJobsTXT, TotalExpectedText, (DefaultTableModel) SecondTable.getModel()); //Using SecondTable model so we can sum.
-
+                    latestserial++;
                 }
 
             }
@@ -599,16 +619,19 @@ public class MainFrame extends javax.swing.JFrame {
     private void SaveBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveBTNActionPerformed
         DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.       
         //Ressing the selected Table Row.
-        table.setValueAt(new JSpinner.DateEditor(jSpinner1, "hh:mm").getFormat().format(jSpinner1.getValue()), MainTable.getSelectedRow(), 0);
-        table.setValueAt(PickupTXT.getText(), MainTable.getSelectedRow(), 1);
-        table.setValueAt(DestinationTXT.getText(), MainTable.getSelectedRow(), 2);
-        table.setValueAt(DriversIDTXT.getText(), MainTable.getSelectedRow(), 3);
-        table.setValueAt(PassengerTXT.getText(), MainTable.getSelectedRow(), 4);
-        table.setValueAt(AmountTXT.getText(), MainTable.getSelectedRow(), 5);
-        table.setValueAt(OptionalTipTXT.getText(), MainTable.getSelectedRow(), 6);
-        table.setValueAt(AccountTXT.getText(), MainTable.getSelectedRow(), 7);
-        table.setValueAt(TelephoneTXT.getText(), MainTable.getSelectedRow(), 8);
-
+        table.setValueAt(new JSpinner.DateEditor(jSpinner1, "HH:mm:ss").getFormat().format(jSpinner1.getValue()), MainTable.getSelectedRow(), 1);
+        table.setValueAt(PickupTXT.getText(), MainTable.getSelectedRow(), 2);
+        table.setValueAt(DestinationTXT.getText(), MainTable.getSelectedRow(), 3);
+        table.setValueAt(DriversIDTXT.getText(), MainTable.getSelectedRow(), 4);
+        table.setValueAt(PassengerTXT.getText(), MainTable.getSelectedRow(), 5);
+        table.setValueAt(AmountTXT.getText(), MainTable.getSelectedRow(), 6);
+        table.setValueAt(OptionalTipTXT.getText(), MainTable.getSelectedRow(), 7);
+        table.setValueAt(AccountTXT.getText(), MainTable.getSelectedRow(), 8);
+        table.setValueAt(TelephoneTXT.getText(), MainTable.getSelectedRow(), 9);
+        String updatequery = "UPDATE DAILYDRIVER SET \"TIME\" = '" + new JSpinner.DateEditor(jSpinner1, "HH:mm:ss").getFormat().format(jSpinner1.getValue())
+                + "', \"PICKUPPOINT\" = '" + PickupTXT.getText() + "', \"DESTINATION\" = '" + DestinationTXT.getText() + "', \"DRIVERID\" = " + DriversIDTXT.getText() + ", \"PASSENGERNAME\" = '" + PassengerTXT.getText()
+                + "', \"AMOUNT\" = " + AmountTXT.getText() + ", \"OPTIONALTIP\" = '" + OptionalTipTXT.getText() + "', \"ACCOUNT\" = '" + AccountTXT.getText() + "', \"TELEPHONE\" = '" + TelephoneTXT.getText() + "' WHERE SERIAL = " + Integer.valueOf(MainTable.getSelectedRow() + 1);
+        DBclass.update(con, updatequery);
 
     }//GEN-LAST:event_SaveBTNActionPerformed
 
@@ -616,9 +639,9 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) MainTable.getModel(); //Getting Maintable Model.
         //Time Box
         Date def = new Date();    //Initializing a new Date Variable
-        SimpleDateFormat formatterDefault = new SimpleDateFormat("HH:mm"); //Setting a date formatter. So we can parse from the Table Time column.
+        SimpleDateFormat formatterDefault = new SimpleDateFormat("HH:mm:ss"); //Setting a date formatter. So we can parse from the Table Time column.
         try {
-            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 0).toString()); //Parsing the Time.
+            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 1).toString()); //Parsing the Time.
         } catch (Exception ex) {
         }
         jSpinner1.setValue(def); //Setting the Selected Time to Spinner.
@@ -634,14 +657,14 @@ public class MainFrame extends javax.swing.JFrame {
         AccountTXT.setText("");
         TelephoneTXT.setText("");
         //Resetting from the selected Table Row.
-        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 1).toString());
-        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
-        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
-        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
-        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
-        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
-        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
-        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
+        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
+        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
+        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
+        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
+        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
+        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 9).toString());
     }//GEN-LAST:event_MainTableMouseClicked
 
     private void CancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTNActionPerformed
@@ -652,7 +675,7 @@ public class MainFrame extends javax.swing.JFrame {
         Date def = new Date();    //Initializing a new Date Variable
         SimpleDateFormat formatterDefault = new SimpleDateFormat("HH:mm"); //Setting a date formatter. So we can parse from the Table Time column.
         try {
-            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 0).toString()); //Parsing the Time.
+            def = formatterDefault.parse(table.getValueAt(MainTable.getSelectedRow(), 1).toString()); //Parsing the Time.
         } catch (Exception ex) {
         }
         jSpinner1.setValue(def); //Setting the Selected Time to Spinner.
@@ -668,14 +691,14 @@ public class MainFrame extends javax.swing.JFrame {
         AccountTXT.setText("");
         TelephoneTXT.setText("");
         //Resetting from the selected Table Row.
-        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 1).toString());
-        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
-        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
-        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
-        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
-        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
-        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
-        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+        PickupTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 2).toString());
+        DestinationTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 3).toString());
+        DriversIDTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 4).toString());
+        PassengerTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 5).toString());
+        AmountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 6).toString());
+        OptionalTipTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 7).toString());
+        AccountTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 8).toString());
+        TelephoneTXT.setText(table.getValueAt(MainTable.getSelectedRow(), 9).toString());
     }//GEN-LAST:event_CancelBTNActionPerformed
 
     /**
