@@ -11,7 +11,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author zakir
+ * @author StudentK
  */
 public class DBclass {
 
